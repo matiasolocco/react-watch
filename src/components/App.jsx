@@ -26,21 +26,19 @@ const App = () => {
         <DigitalClock/>
         </div>
         <div className="appStyle-dateTime">
-          <p>⏲️</p>
+          
           <DateTimePicker
             onChange={handleDateChange}
             value={finishDate}
             format="dd/MM/yyyy HH:mm"
             disableClock={true}
           />
-          <div>
+
             <p>{finishDate.toTimeString}</p>
-          </div>
         </div>
         
         <div className="appStyle-countdown">
           <Countdown finishDate = {finishDate}/>
-          <h1>⏱️</h1>
         </div>
         <div className="appStyle-stopWatch">
         <Stopwatch/>
