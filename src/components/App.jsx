@@ -1,17 +1,49 @@
+import { useState } from "react"
+import Countdown from "./Countdown/Countdown"
+import DigitalClock from "./DigitalClock/DigitalClock"
+import Stopwatch from "./Stopwatch/Stopwatch"
+import '../scss/App.css'
+//npm install react-datetime-picker 
+import DateTimePicker from "react-datetime-picker"
+import 'react-datetime-picker/dist/DateTimePicker.css';
+import 'react-calendar/dist/Calendar.css';
+import 'react-clock/dist/Clock.css';
 
-//todos los componentes comienzan en mayusuclas
-function App() {
-  //todo lo que quiero que se vea en la web va en el return
+
+const App = () => {
+
+  const [finishDate, setFinishDate] = useState (new Date())
+  const handleDateChange = (date) => {
+    setFinishDate(date);
+    
+  }
   return (
-  <div>
-    <div>
-      <h1> Template </h1>
-      ;
+    <div className="appStyle">
+      <div >
+      <div className="appStyle-clock">
+        <h1>🕐</h1>
+        <DigitalClock/>
+      </div>
+      <div>
+        <h1>⏲️</h1>
+        <DateTimePicker
+          onChange={handleDateChange}
+          value={finishDate}
+          format="dd/MM/yyyy HH:mm"
+          disableClock={true}
+        />
+        <div>
+          <p>{finishDate.toTimeString}</p>
+        </div>
+      </div>
+      
+      <Countdown finishDate = {finishDate}/>
+      <h1>⏱️</h1>
+      <Stopwatch/>
+      </div>
     </div>
-  </div>
   )
     
   
 }
-//se exporta como todos los componentes y luego se importa
 export default App
