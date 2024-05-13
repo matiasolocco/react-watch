@@ -10,6 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 
+
 const App = () => {
 
   const [finishDate, setFinishDate] = useState (new Date())
@@ -18,30 +19,36 @@ const App = () => {
     
   }
   return (
-    <div className="appStyle">
-      <div >
-      <div className="appStyle-clock">
-        <h1>🕐</h1>
-        <DigitalClock/>
-      </div>
-      <div>
-        <h1>⏲️</h1>
-        <DateTimePicker
-          onChange={handleDateChange}
-          value={finishDate}
-          format="dd/MM/yyyy HH:mm"
-          disableClock={true}
-        />
+    
+      <div className="appStyle">
         <div>
-          <p>{finishDate.toTimeString}</p>
+        <div className="clockStyle">
+        <DigitalClock/>
+        </div>
+        <div className="appStyle-dateTime">
+          <p>⏲️</p>
+          <DateTimePicker
+            onChange={handleDateChange}
+            value={finishDate}
+            format="dd/MM/yyyy HH:mm"
+            disableClock={true}
+          />
+          <div>
+            <p>{finishDate.toTimeString}</p>
+          </div>
+        </div>
+        
+        <div className="appStyle-countdown">
+          <Countdown finishDate = {finishDate}/>
+          <h1>⏱️</h1>
+        </div>
+        <div className="appStyle-stopWatch">
+        <Stopwatch/>
+        </div>
+        
         </div>
       </div>
-      
-      <Countdown finishDate = {finishDate}/>
-      <h1>⏱️</h1>
-      <Stopwatch/>
-      </div>
-    </div>
+   
   )
     
   

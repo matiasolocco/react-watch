@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import '../DigitalClock/DigitalClock.css';
 
 const DigitalClock = () => {
     //variable de estado --> estado inicial del reloj
@@ -20,7 +21,8 @@ const DigitalClock = () => {
   //RENDERIZADO
     return (
     <div className="appStyle-clock">
-      <h1>{clockState}</h1>
+      {/* <h1>🕐</h1> */}
+      {clockState}
     </div>
   );
 };

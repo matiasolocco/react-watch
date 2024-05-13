@@ -1,4 +1,11 @@
 import { useEffect, useState } from "react"
+import '../Stopwatch/Stopwatch.css'
+//npm i --save @fortawesome/fontawesome-svg-core
+//npm i --save @fortawesome/free-solid-svg-icons
+//npm i --save @fortawesome/free-regular-svg-icons
+//npm i --save @fortawesome/react-fontawesome@latest
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
 
 
 const Stopwatch= () => {
@@ -30,14 +37,17 @@ const Stopwatch= () => {
           <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
       
-      <div id="buttons">
-          {!timerOn && time === 0 && (<button onClick={() => setTimerOn(true)}>⏯️</button>)}
-
-          {timerOn && (<button onClick={() => setTimerOn(false)}>⏸️</button>)}
-          
-          {!timerOn && time > 0 && (<button onClick={() => setTimerOn(true)}>⏯️</button>)}
-          
-          {!timerOn && time > 0 && (<button onClick={() => setTime(0)}>⏹️</button>)}      
+      <div id="buttons" className="buttons">
+            {/* START */}
+          {!timerOn && time === 0 && (<div onClick={() => setTimerOn(true)}>
+              <FontAwesomeIcon icon={faPlay} />
+           </div>)}
+            {/* PAUSE*/}
+          {timerOn && (<div onClick={() => setTimerOn(false)}><FontAwesomeIcon icon={faPause} /></div>)}
+          {/* RESTART */}
+          {!timerOn && time > 0 && (<div onClick={() => setTimerOn(true)}><FontAwesomeIcon icon={faPlay} /></div>)}
+          {/* RESET */}
+          {!timerOn && time > 0 && (<div onClick={() => setTime(0)}><FontAwesomeIcon icon={faStop} /></div>)}      
       </div>
 
     </div>
