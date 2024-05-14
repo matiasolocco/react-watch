@@ -25,8 +25,19 @@
   }*/
 }
 
-.appStyle-dateTime{
-  font-size: 20px;
+.appStyle-countdown{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 1px solid rgb(252, 151, 0);
+    background-color: rgb(68, 67, 67);
+    border-radius: 20px;
+    width: 300px;
+    height: auto ;
+    font-weight: 100;
+    font-size: 20px;
+    padding: 10px 0px 10px 0px;
+    
 }
 
 

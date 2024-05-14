@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react"
 import '../Countdown/Countdown.css'
 
-const Countdown = ({finishDate}) => {
+const Countdown = ({finishDate, countdownStarted}) => {
     const [time, setTime] = useState('');
     /* Las comillas vacias '' representan el valor inicial del estado. En este caso estoy estableciendo que el estado del tiempo es una cadena vacia, al igual que estoy haciendo en DifgitalClock.jsx al almacenar el tiempo actual en una cadena de texto */
     useEffect(()=>{
         let countdownDate = new Date(finishDate).getTime();
         //.getTime --> Returns the stored time value in milliseconds since midnight, January 1, 1970 UTC.
         //SE INCLUYE UN INTERVALO PARA QUE LA FUNCION getTime SE EJECUTE SEGUNDO A DEGUNDO
-        let interval = setInterval(()=> {  
+        let interval
+        if (countdownStarted){
+        interval = setInterval(()=> {  
             let now = new Date().getTime();
         //Ahora debo calcular la distancia entre now y countdownDate  
             let distance = countdownDate - now;
@@ -25,14 +27,7 @@ const Countdown = ({finishDate}) => {
 
             let seconds = Math.floor((distance % (1000 * 60)) / 1000);
             //calcula el número de segundos restantes después de calcular los días, horas y minutos. Utiliza % para obtener el resto después de dividir distance por el número de milisegundos en un minuto. Luego, divide este resto por mil para obtener el número de segundos.
-            console.log("countdownDate:", countdownDate);
-            console.log("now:", now);
-            console.log("distance:", distance);
-            console.log("days:", days);
-            console.log("hours:", hours);
-            console.log("minutes:", minutes);
-            console.log("seconds:", seconds);
-
+  
 
             //MENSAJE PARA INDICAR QUE EL COUNTDOWN HA TERMINADO
             if (distance < 0){
@@ -43,9 +38,12 @@ const Countdown = ({finishDate}) => {
             setTime('⏳ ' + days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
             }
         }, 1000);// Y LO DETENGA EN UN INTERVALO DE 1000 MILISEGUNDOS
+      } else {
+       setTime('00:00:00')
+      }
 
         return () => clearInterval(interval) // se limpia el intervalo
-    }, []);
+    }, [finishDate, countdownStarted]);
   return (
     <div className="countdown">
       {time}
