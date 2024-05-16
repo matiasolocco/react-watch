@@ -5,7 +5,7 @@ import '../Stopwatch/Stopwatch.css'
 //npm i --save @fortawesome/free-regular-svg-icons
 //npm i --save @fortawesome/react-fontawesome@latest
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPause, faPlay, faStop } from "@fortawesome/free-solid-svg-icons";
+import { faPause, faPlay, faRotateBack, faStop } from "@fortawesome/free-solid-svg-icons";
 
 
 const Stopwatch= () => {
@@ -30,24 +30,24 @@ const Stopwatch= () => {
   return (
     <div className="stopwatch">
       {/* Botones del cronometro para controlar la función */}
-      <div>
+      <div className="counter">
          
           <span>{("0" + Math.floor((time / 60000) % 60)).slice(-2)}:</span>
           <span>{("0" + Math.floor((time / 1000) % 60)).slice(-2)}:</span>
           <span>{("0" + ((time / 10) % 100)).slice(-2)}</span>
       </div>
       
-      <div id="buttons" className="buttons">
+      <div className="buttons">
             {/* START */}
           {!timerOn && time === 0 && (<div onClick={() => setTimerOn(true)}>
-              <FontAwesomeIcon icon={faPlay} />
+              <FontAwesomeIcon  id="btnStart" icon={faPlay} />
            </div>)}
             {/* PAUSE*/}
-          {timerOn && (<div onClick={() => setTimerOn(false)}><FontAwesomeIcon icon={faPause} /></div>)}
+          {timerOn && (<div onClick={() => setTimerOn(false)}><FontAwesomeIcon id="btnPause" icon={faPause} /></div>)}
           {/* RESTART */}
-          {!timerOn && time > 0 && (<div onClick={() => setTimerOn(true)}><FontAwesomeIcon icon={faPlay} /></div>)}
+          {!timerOn && time > 0 && (<div onClick={() => setTimerOn(true)}><FontAwesomeIcon id="btnRestart" icon={faRotateBack} /></div>)}
           {/* RESET */}
-          {!timerOn && time > 0 && (<div onClick={() => setTime(0)}><FontAwesomeIcon icon={faStop} /></div>)}      
+          {!timerOn && time > 0 && (<div onClick={() => setTime(0)}><FontAwesomeIcon id="btnReset" icon={faStop} /></div>)}      
       </div>
 
     </div>

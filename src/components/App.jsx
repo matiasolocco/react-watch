@@ -10,7 +10,7 @@ import 'react-calendar/dist/Calendar.css';
 import 'react-clock/dist/Clock.css';
 
 
-import { faHourglassStart } from "@fortawesome/free-solid-svg-icons"
+import { faHourglassStart, faStopwatch } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 
@@ -21,21 +21,34 @@ const App = () => {
   const [countdownStarted, setCountdownStarted] = useState(false);
   
   const handleDateChange = (date) => {
-    setFinishDate(date);
+    setFinishDate(date)
   }
   
   const startCountdown = () => {
-    setCountdownStarted(true);
+    setCountdownStarted(true)
   };
+
+
+  const handleClickCountdown = () => {
+    setCountdownStarted(true)
+  }
+
+  const handleClickStopWatch = () => {
+    setCountdownStarted(false)
+  }
 
   return (
     
       <div className="appStyle">
-        <div>
+        
         <div className="clockStyle">
         <DigitalClock/>
         </div>
-        <div className="appStyle-countdown">  
+        
+      
+
+      {countdownStarted ? (
+      <div className="appStyle-countdown">  
           <DateTimePicker
             onChange={handleDateChange}
             value={finishDate}
@@ -45,12 +58,21 @@ const App = () => {
           <Countdown finishDate = {finishDate} countdownStarted={countdownStarted}/>
           <div onClick={startCountdown}><FontAwesomeIcon icon={faHourglassStart}/></div>
         </div>
-
+        ) : (
         <div className="appStyle-stopWatch">
         <Stopwatch/>
-        </div>
+        </div>)
+      }
+
+       <div className="conditionalButtons">
+         {!countdownStarted &&  
+               <div onClick={handleClickCountdown}><FontAwesomeIcon icon={faHourglassStart}/></div>}
+          {countdownStarted &&
+               <div onClick={handleClickStopWatch}><FontAwesomeIcon icon={faStopwatch}/></div> }
+       </div>
         
-        </div>
+        
+      
       </div>
    
   )

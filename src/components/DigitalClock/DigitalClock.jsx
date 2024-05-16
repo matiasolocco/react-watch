@@ -21,7 +21,6 @@ const DigitalClock = () => {
   //RENDERIZADO
     return (
     <div className="appStyle-clock">
-      {/* <h1>🕐</h1> */}
       {clockState}
     </div>
   );

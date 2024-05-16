@@ -19,4 +19,12 @@
     display: flex;
     font-size: 25px;
     background-color: rgb(68, 67, 67);
+    gap: 15px;
+    
+}
+
+
+#btnStart:hover, #btnReset:hover, #btnPause:hover, #btnRestart:hover   {
+    cursor: pointer;
+    color: rgb(252, 151, 0); 
 }
